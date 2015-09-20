@@ -5,12 +5,22 @@
     <title>Imgur Album Thumbnails</title>
     <script type="text/javascript" src="js/dist/vendor.min.js"></script>
     <script type="text/javascript" src="js/dist/imguralbum.min.js"></script>
+    <style type="text/css">
+        .floated_img {
+            float: left;
+        }
+    </style>
 </head>
 <body>
 <div ng-app='ImgurAlbum' ng-controller='MainCtrl'>
-    <spane>Enter album code: </spane>
-    <input type="text" ng-model="album.code" />
-    <input type="submit" ng-click="album.submit()" />
+    <div>
+        <spane>Enter album code: </spane>
+        <input type="text" ng-model="album.code" />
+        <input type="submit" ng-click="album.submit()" />
+    </div>
+    <div class="floated_img" ng-repeat="image in album.images">
+        <a href="{{image.link}}"><img ng-src="{{image.thumblink}}"  class="floated_img" alt="image"/></a>
+    </div>
 </div>
 </body>
 </html>

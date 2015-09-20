@@ -7,7 +7,7 @@
 
         album.submit = function () {
          imgursvc.getAlbumImages(album.code).then(function(data) {
-             console.log(data);
+             album.images = data;
          });
         };
 
