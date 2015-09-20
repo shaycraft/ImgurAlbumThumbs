@@ -15,7 +15,8 @@ gulp.task('bower', function() {
 //Add bower dependencies in here.  Order matters.
 gulp.task('vendor', function() {
     gulp.src([
-            'js/vendor/angular.min.js'
+            'js/vendor/angular.min.js',
+            'js/vendor/angular-resource.min.js'
         ])
         .pipe(concat('vendor.min.js'))
         .pipe(gulp.dest('js/dist/'));
@@ -26,9 +27,12 @@ gulp.task('scripts', function() {
         .pipe(concat('imguralbum.js'))
         .pipe(gulp.dest('js/dist/'))
         .pipe(rename('imguralbum.min.js'))
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(gulp.dest('js/dist/'));
 });
 
+gulp.task('watch', function() {
+    gulp.watch('js/scripts/**/*.js', ['scripts']);
+});
 
-gulp.task('default', ['bower', 'vendor', 'scripts']);
+gulp.task('default', ['bower', 'vendor', 'scripts', 'watch']);
