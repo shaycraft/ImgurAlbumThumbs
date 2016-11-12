@@ -23,7 +23,7 @@ gulp.task('vendor', function() {
 });
 
 gulp.task('scripts', function() {
-    return gulp.src('js/scripts/**/*.js')
+    return gulp.src(['js/scripts/app.js', 'js/scripts/*.js'])
         .pipe(concat('imguralbum.js'))
         .pipe(gulp.dest('js/dist/'))
         .pipe(rename('imguralbum.min.js'))
