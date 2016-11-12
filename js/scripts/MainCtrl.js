@@ -4,19 +4,20 @@
 
     function MainCtrl($scope, $location, imgursvc) {
         var album = {};
+         var getImgurFeed = function (albumName, callbackObj) {
+        imgursvc.getAlbumImages(albumName).then(function (data) {
+            callbackObj.images = data;
+        });
+    }
 
         // example:  file:///C:/Users/Sam/Documents/GitHub/ImgurAlbumThumbs/index.html#/!/?albumName=xxx
         var albumName = $location.search().albumName;
         if (albumName !== undefined) {
-            imgursvc.getAlbumImages(albumName).then(function (data) {
-                album.images = data;
-            });
+            getImgurFeed(albumName, album);
         }
 
         album.submit = function () {
-            imgursvc.getAlbumImages(album.code).then(function (data) {
-                album.images = data;
-            });
+            getImgurFeed(album.code, album);
         };
 
         album.msg = "Welcome to the Imgur Album program!";
